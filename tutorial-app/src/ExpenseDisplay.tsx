@@ -1,10 +1,14 @@
 import { Expense } from "./ExpenseClass";
 
-function ExpenseDisplay({ expenses }: { expenses: Expense[] | null }) {
+export interface ExpenseDisplayProps {
+  expenses: Expense[] | null;
+}
+
+function ExpenseDisplay(prop: ExpenseDisplayProps) {
   return (
     <>
       <ul>
-        {expenses?.map((expense) => (
+        {prop.expenses?.map((expense) => (
           <li key={expense.id}>
             <h2>{expense.title}</h2>
             <p>{expense.amount}</p>

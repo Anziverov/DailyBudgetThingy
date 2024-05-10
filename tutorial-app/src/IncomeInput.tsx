@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-function IncomeInput({
-  setIncome,
-}: {
+export interface IncomeInputProps {
   setIncome: (value: number | null) => void;
-}) {
+}
+
+function IncomeInput(props: IncomeInputProps) {
+  const { setIncome } = props;
   const [localIncome, setLocalIncome] = useState<number | null>(null);
 
   return (

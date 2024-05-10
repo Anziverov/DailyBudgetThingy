@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Expense } from "./ExpenseClass";
 
-function ExpenseInput({
-  expenses,
-  setExpenses,
-}: {
+export interface ExpenseInputProps {
   expenses: Expense[] | null;
   setExpenses: (value: Expense[] | null) => void;
-}) {
+}
+
+function ExpenseInput(expenseInputProps: ExpenseInputProps) {
+  const { expenses, setExpenses } = expenseInputProps;
   const [expense, setExpense] = useState<Expense | null>(
     new Expense(0, "", 0, new Date())
   );

@@ -12,6 +12,8 @@ function ExpenseDisplay(prop: ExpenseDisplayProps) {
           <li key={expense.id}>
             <h2>{expense.title}</h2>
             <p>{expense.amount}</p>
+            <p>{expense.recurring ? "Recurring" : "One Time"}</p>
+            <p>Frequency: {expense.frequency}</p>
             <p>
               {expense.date ? expense.date.toISOString().split("T")[0] : ""}
             </p>

@@ -1,9 +1,13 @@
 import IncomeInput from "./IncomeInput";
 import IncomeDisplay from "./IncomeDisplay";
-import { useState } from "react";
 
-function IncomeSection() {
-  const [income, setIncome] = useState<number | null>(null);
+interface IncomeSectionProps {
+  income: number | null;
+  setIncome: (value: number | null) => void;
+}
+
+function IncomeSection(props: IncomeSectionProps) {
+  const { income, setIncome } = props;
 
   return (
     <>

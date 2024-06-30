@@ -12,10 +12,6 @@ function ExpenseInput(expenseInputProps: ExpenseInputProps) {
     new Expense(0, "", 0, new Date(), false, null)
   );
 
-  const newId = expenses
-    ? Math.max(...expenses.map((expense) => expense.id)) + 1
-    : 0;
-
   return (
     <>
       <input
@@ -56,21 +52,32 @@ function ExpenseInput(expenseInputProps: ExpenseInputProps) {
         value={expense?.date ? expense.date.toISOString().split("T")[0] : ""}
         onChange={(e) => handleDateChange(e, setExpense, expense)}
       />
-      <button
-        onClick={() =>
-          setExpenses([
-            ...(expenses ?? []),
-            {
-              id: newId,
-              ...expense,
-            },
-          ] as [Expense])
-        }
-      >
+      <button onClick={() => handleSave(expenses, setExpenses, expense)}>
         Log Expense
       </button>
     </>
   );
+}
+
+function handleSave(
+  expenses: Expense[] | null,
+  setExpenses: (value: Expense[] | null) => void,
+  expense: Expense | null
+) {
+  let newId = expenses
+    ? Math.max(...expenses.map((expense) => expense.id)) + 1
+    : 0;
+
+  if (expense != null) {
+    expense.id = newId;
+  }
+
+  setExpenses([
+    ...(expenses ?? []),
+    {
+      ...expense,
+    },
+  ] as [Expense]);
 }
 
 function handleNameChange(
